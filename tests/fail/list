@@ -1,3 +1,4 @@
+./test.sh empty/
 ./test.sh types01/
 ./test.sh types02/
 ./test.sh types03/
