@@ -3,5 +3,6 @@ ctf-testsuite
 
 The Common Trace Format (CTF) testsuite is intended to validate the conformance of CTF readers.
 
-To run the testsuite simply export CTF_READER_BIN="$YOUR_CTF_READER" and use the run.sh script found in the tests/ folder.
+To run the testsuite simply export CTF_READER_BIN="$YOUR_CTF_READER" and
+use the run.sh script found in the tests/ folder.
 
