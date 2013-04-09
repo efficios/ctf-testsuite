@@ -25,3 +25,9 @@
 ./test.sh types24/
 ./test.sh types25/
 ./test.sh types26/
+./test.sh fail1/
+./test.sh fail2/
+./test.sh integer-range/
+./test.sh lttng-modules-2.0-pre1/
+./test.sh packet-based-metadata/
+./test.sh smalltrace/
