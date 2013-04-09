@@ -8,3 +8,4 @@
 ./test.sh test/
 ./test.sh warnings/
 ./test.sh wk-heartbeat-u/
+./test.sh minimal/
