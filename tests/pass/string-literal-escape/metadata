@@ -5,15 +5,27 @@ typealias integer { size = 32; align = 32; signed = false; base = hex; } := uint
 trace {
 	major = 0;
 	minor = 1;
-	test = "\"";
-	test2 = "?\x20\o040?";
-	test3 = '\n';
+	test2 = "?\x20\040\123\0?";
 	uuid = "2a6422d0-6cee-11e0-8c08-cb07d7b3a564";
 	byte_order = le;
 	packet.header := struct {
 		uint32_t magic;
 		uint8_t  uuid[16];
 	};
+};
+
+/* use babeltrace -f trace:hostname to print. */
+
+/*
+ * Expected:
+
+abc " hex: A, #, #, #1,
+oct: A, #, #, #1,
+
+ */
+
+env {
+	hostname = "\nabc \" hex: \x41, \x23, \x023, \x0231,\noct: \101, \043, \43, \0431, \0NOT SEEN";
 };
 
 stream {
