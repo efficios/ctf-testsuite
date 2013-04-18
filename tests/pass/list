@@ -5,6 +5,7 @@
 ./test.sh succeed2/
 ./test.sh succeed3/
 ./test.sh succeed4/
+./test.sh string-concat/
 ./test.sh test/
 ./test.sh warnings/
 ./test.sh wk-heartbeat-u/
