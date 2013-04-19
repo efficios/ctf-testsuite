@@ -1,0 +1,20 @@
+/* CTF 1.8 */
+
+typealias integer { size = 32; align = 8; signed = false; } := uint32_t;
+
+/* FAIL: keyword as a field. */
+struct a {
+  uint32_t x;
+} align(-1);
+
+
+trace {
+	major = 2;
+	minor = 1;
+	byte_order = le;
+	packet.header := struct {
+		uint32_t magic;
+	};
+};
+
+
