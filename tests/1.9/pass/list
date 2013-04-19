@@ -1,0 +1,12 @@
+./test.sh env-warning/
+./test.sh lttng-modules-2.0-pre5/
+./test.sh smalltrace/
+./test.sh succeed1/
+./test.sh succeed2/
+./test.sh succeed4/
+./test.sh string-concat/
+./test.sh string-literal-escape/
+./test.sh test/
+./test.sh warnings/
+./test.sh wk-heartbeat-u/
+./test.sh minimal/

@@ -16,7 +16,7 @@
 # Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 
 CURDIR=$(dirname $0)
-UTILS_DIR=$CURDIR/../../utils/
+UTILS_DIR=$CURDIR/../../../utils/
 
 source $UTILS_DIR/tap/tap.sh
 
