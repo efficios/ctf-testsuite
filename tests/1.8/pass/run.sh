@@ -1,3 +1,3 @@
 #!/bin/sh
 
-prove --exec '' --merge - < list
+. ../../../utils/run.sh
