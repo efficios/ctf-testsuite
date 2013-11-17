@@ -1,0 +1,21 @@
+/* CTF 1.8 */
+
+typealias integer { size = 32; align = 8; signed = false; } := uint32_t;
+
+/* FAIL: reserved keywords used as fields */
+struct dummy {
+  uint32_t valid;
+  uint32_t callsite;
+  uint32_t env;
+  uint32_t stream;
+};
+
+
+trace {
+	major = 2;
+	minor = 1;
+	byte_order = le;
+	packet.header := struct {
+		uint32_t magic;
+	};
+};
