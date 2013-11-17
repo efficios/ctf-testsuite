@@ -8,4 +8,4 @@ cd ..
 echo "Running expected failure tests"
 cd fail
 ./run.sh
-cd ,,
+cd ..
