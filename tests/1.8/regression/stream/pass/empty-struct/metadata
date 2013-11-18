@@ -15,5 +15,8 @@ trace {
 
 event {
 	name = evname;
-	fields := struct { struct {} s; };
+	fields := struct {
+		uint8_t f1;
+		struct {} s;
+	};
 };
