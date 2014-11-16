@@ -20,7 +20,11 @@ UTILS_DIR=$CURDIR/../../../../../utils/
 
 source $UTILS_DIR/tap/tap.sh
 
-NUM_TESTS=3
+NUM_TESTS=0
+
+for param in $(cat $1/param-list.txt); do
+	NUM_TESTS=$((${NUM_TESTS} + 3))
+done
 
 plan_tests $NUM_TESTS
 
@@ -29,16 +33,18 @@ if [ "x${CTF_READER_BIN}" == "x" ]; then
 	exit 1
 fi
 
-cd $1 && ./test.py prepare
-result=$?
-is $result 0 $1
-cd ..
+for param in $(cat $1/param-list.txt); do
+	cd $1 && ./test.py prepare ${param}
+	result=$?
+	is $result 0 $1
+	cd ..
 
-$CTF_READER_BIN $CTF_READER_OPTS $1 >/dev/null 2>&1
-result=$?
-echo $result > /tmp/blah
-is $result 0 $1		# expect pass
+	$CTF_READER_BIN $CTF_READER_OPTS $1/trace-${param} >/dev/null 2>&1
+	result=$?
+	is $result 0 $1		# expect pass
 
-cd $1 && ./test.py clean
-result=$?
-is $result 0 $1
+	cd $1 && ./test.py clean ${param}
+	result=$?
+	is $result 0 $1
+	cd ..
+done
