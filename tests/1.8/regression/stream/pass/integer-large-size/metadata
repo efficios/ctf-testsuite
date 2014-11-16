@@ -1,0 +1,16 @@
+/* CTF 1.8 */
+
+trace {
+	major = 1;
+	minor = 8;
+	byte_order = le;
+};
+
+typealias integer { size = 1024; } := uint1024_t;
+
+event {
+	name = myevent;
+	fields := struct {
+		uint1024_t v;
+	};
+};
