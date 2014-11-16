@@ -14,10 +14,9 @@ if (len(sys.argv) <= 1):
 mode = sys.argv[1]
 if (len(sys.argv) <= 2):
 	arg_err()
-array_len_kb = int(sys.argv[2])
-array_len = array_len_kb * 1024
+array_len = int(sys.argv[2])
 
-tracedir_name = './trace-' + str(array_len_kb) + '/'
+tracedir_name = './trace-' + str(array_len) + '/'
 output_metadata = tracedir_name + 'metadata'
 output_stream = tracedir_name + 'stream'
 
@@ -68,13 +67,13 @@ def generate_stream(array_len):
 	stream_f.close()
 
 def test_prepare():
-	print('Preparing test for array length ' + str(array_len_kb) + ' kb')
+	print('Preparing test for array length ' + str(array_len) + ' bytes')
 	os.mkdir(tracedir_name)
 	generate_metadata(array_len)
 	generate_stream(array_len)
 
 def test_clean():
-	print('Cleaning up test for array length ' + str(array_len_kb) + ' kb')
+	print('Cleaning up test for array length ' + str(array_len) + ' bytes')
 	try:
 		os.remove(output_metadata)
 	except:
