@@ -3,7 +3,7 @@
 typealias integer { size = 32; align = 8; signed = false; } := uint32_t;
 
 /* FAIL: name is a keyword. */
-typealias integer { size = 8; align = 8; signed = "false"; } := trace;
+typealias integer { size = 8; align = 8; signed = false; } := trace;
 
 trace {
 	major = 2;
