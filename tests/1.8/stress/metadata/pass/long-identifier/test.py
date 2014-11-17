@@ -58,9 +58,6 @@ def generate_metadata(array_len):
 	'}};\n'
 	'\n').format()
 
-	metadata_typealias = \
-	('typealias integer {{ size = 8; align = 8; signed = false; base = 10; }} := t{};\n')
-
 	metadata_f = open(output_metadata, 'w')
 	metadata_f.write(metadata_str1)
 	for i in range(array_len):
