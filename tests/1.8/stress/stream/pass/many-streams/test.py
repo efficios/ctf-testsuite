@@ -27,11 +27,12 @@ def write_binary(f, arr):
 
 def generate_metadata(array_len):
 	# Generate metadata
-	metadata_str1 = \
+	metadata_str = \
 	('/* CTF 1.8 */\n'
 	'\n'
-	'typealias integer {{ size = 8; align = 8; signed = false; base = 10; }} := uint8_t;\n'
+	'typealias integer {{ size = 8; align = 8; signed = false; base = hex; }} := uint8_t;\n'
 	'typealias integer {{ size = 32; align = 8; signed = false; base = hex; }} := uint32_t;\n'
+	'typealias integer {{ size = 64; align = 8; signed = false; base = hex; }} := uint64_t;\n'
 	'\n'
 	'trace {{\n'
 	'	major = 0;\n'
@@ -47,35 +48,51 @@ def generate_metadata(array_len):
 	'event {{\n'
 	'	name = myevent;\n'
 	'	fields := struct {{\n'
-	'		uint8_t ').format()
-
-	metadata_char = \
-	('A')
-
-	metadata_str2 = \
-	(';\n'
+	'		uint8_t f;\n'
 	'	}};\n'
-	'}};\n'
-	'\n').format()
+	'}};\n').format()
 
 	metadata_f = open(output_metadata, 'w')
-	metadata_f.write(metadata_str1)
-	for i in range(array_len):
-		metadata_f.write(metadata_char.format())
-	metadata_f.write(metadata_str2)
+	metadata_f.write(metadata_str)
 	metadata_f.close()
 
+def generate_stream(stream_nr):
+	# Generate stream
+	stream_packet_header = [
+	  0xC1, 0x1F, 0xFC, 0xC1,	# magic
+	  0x2A, 0x64, 0x22, 0xD0, 0x6C, 0xEE, 0x11, 0xE0,
+	  0x8C, 0x08, 0xCB, 0x07, 0xD7, 0xB3, 0xA5, 0x64, # uuid
+	]
+	event_payload = [
+	  0x42,
+	]
+	stream_f = open(output_stream + str(stream_nr), 'wb')
+	write_binary(stream_f, stream_packet_header)
+	# generate 8-bit per event
+	write_binary(stream_f, event_payload)
+	stream_f.close()
+
+def generate_streams(array_len):
+	for i in range(array_len):
+		generate_stream(i)
+
 def test_prepare():
-	print('Preparing test for long identifier ' + str(array_len) + ' chars')
+	print('Preparing test for ' + str(array_len) + ' streams')
 	os.mkdir(tracedir_name)
 	generate_metadata(array_len)
+	generate_streams(array_len)
 
 def test_clean():
-	print('Cleaning up test for long identifier ' + str(array_len) + ' chars')
+	print('Cleaning up test for ' + str(array_len) + ' streams')
 	try:
 		os.remove(output_metadata)
 	except:
 		pass
+	for i in range(array_len):
+		try:
+			os.remove(output_stream + str(i))
+		except:
+			pass
 	try:
 		os.rmdir(tracedir_name)
 	except:

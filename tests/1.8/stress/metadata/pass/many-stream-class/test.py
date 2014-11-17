@@ -27,11 +27,12 @@ def write_binary(f, arr):
 
 def generate_metadata(array_len):
 	# Generate metadata
-	metadata_str1 = \
-	('/* CTF 1.8 */\n'
+	metadata_str = \
+	( '/* CTF 1.8 */\n'
 	'\n'
 	'typealias integer {{ size = 8; align = 8; signed = false; base = 10; }} := uint8_t;\n'
 	'typealias integer {{ size = 32; align = 8; signed = false; base = hex; }} := uint32_t;\n'
+	'typealias integer {{ size = 64; align = 8; signed = false; base = hex; }} := uint64_t;\n'
 	'\n'
 	'trace {{\n'
 	'	major = 0;\n'
@@ -41,37 +42,29 @@ def generate_metadata(array_len):
 	'	packet.header := struct {{\n'
 	'		uint32_t magic;\n'
 	'		uint8_t uuid[16];\n'
-	'	}};\n'
-	'}};\n'
-	'\n'
-	'event {{\n'
-	'	name = myevent;\n'
-	'	fields := struct {{\n'
-	'		uint8_t ').format()
-
-	metadata_char = \
-	('A')
-
-	metadata_str2 = \
-	(';\n'
+	'		uint64_t stream_id;\n'
 	'	}};\n'
 	'}};\n'
 	'\n').format()
 
+	metadata_stream_class = \
+	('stream {{\n'
+	'	id = {};\n'
+	'}};\n')
+
 	metadata_f = open(output_metadata, 'w')
-	metadata_f.write(metadata_str1)
+	metadata_f.write(metadata_str)
 	for i in range(array_len):
-		metadata_f.write(metadata_char.format())
-	metadata_f.write(metadata_str2)
+		metadata_f.write(metadata_stream_class.format(i))
 	metadata_f.close()
 
 def test_prepare():
-	print('Preparing test for long identifier ' + str(array_len) + ' chars')
+	print('Preparing test for ' + str(array_len) + ' stream class')
 	os.mkdir(tracedir_name)
 	generate_metadata(array_len)
 
 def test_clean():
-	print('Cleaning up test for long identifier ' + str(array_len) + ' chars')
+	print('Cleaning up test for ' + str(array_len) + ' stream class')
 	try:
 		os.remove(output_metadata)
 	except:

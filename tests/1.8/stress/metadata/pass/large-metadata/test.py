@@ -47,14 +47,14 @@ def generate_metadata(array_len):
 	'event {{\n'
 	'	name = myevent;\n'
 	'	fields := struct {{\n'
-	'		uint8_t ').format()
+	'		uint8_t f;\n'
+	'	}};\n').format()
 
 	metadata_char = \
-	('A')
+	(' ')
 
 	metadata_str2 = \
-	(';\n'
-	'	}};\n'
+	('\n'
 	'}};\n'
 	'\n').format()
 
@@ -66,12 +66,12 @@ def generate_metadata(array_len):
 	metadata_f.close()
 
 def test_prepare():
-	print('Preparing test for long identifier ' + str(array_len) + ' chars')
+	print('Preparing test for large metadata ' + str(array_len) + ' chars')
 	os.mkdir(tracedir_name)
 	generate_metadata(array_len)
 
 def test_clean():
-	print('Cleaning up test for long identifier ' + str(array_len) + ' chars')
+	print('Cleaning up test for large metadata ' + str(array_len) + ' chars')
 	try:
 		os.remove(output_metadata)
 	except:
