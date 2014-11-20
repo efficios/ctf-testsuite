@@ -18,6 +18,8 @@
 CURDIR=$(dirname $0)
 UTILS_DIR=$CURDIR/../../../../../utils/
 
+export PYTHONPATH="$(realpath "$UTILS_DIR/python")"
+
 source $UTILS_DIR/tap/tap.sh
 
 NUM_TESTS=0
@@ -34,7 +36,8 @@ if [ "x${CTF_READER_BIN}" == "x" ]; then
 fi
 
 for param in $(cat $1/param-list.txt); do
-	cd $1 && ./test.py prepare ${param}
+	cd $1 && ./test.py --size ${param} prepare
+
 	result=$?
 	is $result 0 $1
 	cd ..
@@ -43,7 +46,7 @@ for param in $(cat $1/param-list.txt); do
 	result=$?
 	is $result 0 $1		# expect pass
 
-	cd $1 && ./test.py clean ${param}
+	cd $1 && ./test.py --size ${param} clean
 	result=$?
 	is $result 0 $1
 	cd ..
