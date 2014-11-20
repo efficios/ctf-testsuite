@@ -9,4 +9,4 @@ for t in */; do
 	TEST_LIST="${TEST_LIST}./test.sh ${t}"
 done
 
-echo "${TEST_LIST}" | prove --exec '' --merge -
+echo -e "${TEST_LIST}" | prove --exec '' --merge -
