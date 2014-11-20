@@ -4,7 +4,7 @@ import sys
 import os
 
 
-class MetadataTestAssitant:
+class MetadataTestAssistant:
     BASIC_PROLOGUE = \
 '''/* CTF 1.8 */
 
@@ -48,7 +48,7 @@ trace {
 
         # validate size
         if args.size < 1:
-            MetadataTestAssitant._perror('wrong size: {}'.format(args.size))
+            MetadataTestAssistant._perror('wrong size: {}'.format(args.size))
 
         return args
 
@@ -80,7 +80,7 @@ trace {
     def _do_action(self):
         if self._action not in self._actions:
             msg = 'invalid action: "{}"'.format(self._action)
-            MetadataTestAssitant._perror(msg)
+            MetadataTestAssistant._perror(msg)
 
         self._actions[self._action]()
 
