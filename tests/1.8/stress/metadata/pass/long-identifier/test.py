@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-from ctftestsuite.stress import MetadataTest
+from ctftestsuite.stress import MetadataTestAssitant
 
 
-class Test(MetadataTest):
+class TestAssistant(MetadataTestAssitant):
     what = 'long identifier of {size} chars'
 
     def write_metadata(self, f):
@@ -28,5 +28,5 @@ class Test(MetadataTest):
 
 
 if __name__ == '__main__':
-    test = Test()
-    test.main()
+    test_assistant = TestAssistant()
+    test_assistant.main()

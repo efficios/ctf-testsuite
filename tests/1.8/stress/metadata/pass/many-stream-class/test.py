@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-from ctftestsuite.stress import MetadataTest
+from ctftestsuite.stress import MetadataTestAssitant
 
 
-class Test(MetadataTest):
+class TestAssistant(MetadataTestAssitant):
     what = '{size} stream classes'
 
     def write_metadata(self, f):
@@ -42,5 +42,5 @@ trace {
 
 
 if __name__ == '__main__':
-    test = Test()
-    test.main()
+    test_assistant = TestAssistant()
+    test_assistant.main()
