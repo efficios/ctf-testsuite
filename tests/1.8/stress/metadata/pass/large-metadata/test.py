@@ -6,23 +6,8 @@ class Test(MetadataTest):
     what = 'large metadata with {size} extra chars'
 
     def write_metadata(self, f):
-        p1 = '''/* CTF 1.8 */
-
-typealias integer { size = 8; align = 8; signed = false; base = 10; } := uint8_t;
-typealias integer { size = 32; align = 8; signed = false; base = hex; } := uint32_t;
-
-trace {
-	major = 0;
-	minor = 0;
-	uuid = "2a6422d0-6cee-11e0-8c08-cb07d7b3a564";
-	byte_order = le;
-	packet.header := struct {
-		uint32_t magic;
-		uint8_t uuid[16];
-	};
-};
-
-event {
+        p1 = \
+'''event {
 	name = myevent;
 	fields := struct {
 		uint8_t f;
@@ -30,6 +15,7 @@ event {
 '''
         p2 = '\n};\n'
 
+        f.write(self.BASIC_PROLOGUE)
         f.write(p1)
 
         for i in range(self.size):
