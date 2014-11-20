@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-from ctftestsuite.stress import MetadataTestAssitant
+from ctftestsuite.stress import MetadataTestAssistant
 
 
-class TestAssistant(MetadataTestAssitant):
+class TestAssistant(MetadataTestAssistant):
     what = 'long identifier of {size} chars'
 
     def write_metadata(self, f):
