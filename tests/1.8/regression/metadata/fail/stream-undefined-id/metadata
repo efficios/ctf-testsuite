@@ -1,0 +1,47 @@
+/* CTF 1.8 */
+trace {
+	major = 1;
+	minor = 8;
+	byte_order = le;
+	packet.header := struct {
+		integer { size = 32; align = 8; signed = false; encoding = none; base = decimal; byte_order = le; } stream_id;
+	};
+};
+
+/*
+ * Some events explicitly define stream_id = 0, some define stream_id = 1, and
+ * others don't specify a stream_id at all.
+ * This is not valid: if there are events not specifying a stream, then only
+ * stream_id = 0 is allowed.
+ */
+
+stream {
+	id = 0;
+};
+
+stream {
+	id = 1;
+};
+
+
+event {
+	id = 0;
+	name = "event0";
+};
+
+event {
+	id = 1;
+	name = "event1";
+	stream_id = 0;
+};
+
+event {
+	id = 2;
+	name = "event2";
+	stream_id = 1;
+};
+
+event {
+	id = 3;
+	name = "event3";
+};
