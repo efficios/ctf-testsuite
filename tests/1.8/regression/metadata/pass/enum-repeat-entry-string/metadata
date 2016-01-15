@@ -19,8 +19,8 @@ event {
 	name = string;
 	fields := struct {
 	   enum : TYPE {
-		  VAL1 = 0, 
-		  VAL2 = 1, 
+		  VAL1 = 0,
+		  VAL2 = 1,
 		  VAL1 = 2,
 	   } field;
 	};
