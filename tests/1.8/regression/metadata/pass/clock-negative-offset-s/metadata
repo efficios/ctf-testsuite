@@ -1,0 +1,12 @@
+/* CTF 1.8 */
+
+trace {
+	major = 1;
+	minor = 8;
+	byte_order = le;
+};
+
+clock {
+	name = "test";
+	offset_s = -1000;
+};
