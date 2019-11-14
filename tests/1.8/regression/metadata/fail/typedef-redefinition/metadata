@@ -8,8 +8,8 @@ typedef uint32_t myint;
 typedef uint64_t myint;
 
 trace {
-	major = 2;
-	minor = 1;
+	major = 1;
+	minor = 8;
 	byte_order = le;
 	packet.header := struct {
 		uint32_t magic;
