@@ -7,8 +7,8 @@ enum dummy : uint32_t {
   x = -1
 };
 trace {
-	major = 2;
-	minor = 1;
+	major = 1;
+	minor = 8;
 	byte_order = le;
 	packet.header := struct {
 		uint32_t magic;
