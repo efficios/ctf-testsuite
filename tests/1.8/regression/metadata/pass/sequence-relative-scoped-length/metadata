@@ -1,0 +1,21 @@
+/* CTF 1.8 */
+typealias integer { size = 32; align = 32; signed = false; base = 10; } := uint32_t;
+
+trace {
+	major = 0;
+	minor = 1;
+	byte_order = le;
+	packet.header := struct {
+		uint32_t magic;
+	};
+};
+
+event {
+	name = string;
+	fields := struct {
+		uint8_t len;
+		struct {
+		  uint32_t A[trace.stream.event.fields.len];
+		} field;
+	};
+};
